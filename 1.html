@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Product Page</title>
+    <style>
+        :root {
+            --bg: #0a0a1a;
+            --panel: #111133;
+            --text: #d0c8ff;
+            --accent: #a86bff;
+            --border: #2a2a4a;
+        }
+body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+/* Product Section */
+        .product-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px;
+        }
+.product-image {
+            width: 500px;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+.product-info {
+            background: var(--panel);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+.product-name {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+.product-description {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+.product-price {
+            font-size: 24px;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+.product-button {
+            background: var(--accent);
+            color: var(--bg);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+/* Copyright Section */
+        .copyright {
+            text-align: center;
+            padding: 50px;
+            font-size: 14px;
+        }
+        
+
+        .shape {
+            position: fixed; /* Make shapes fixed */
+            opacity: 0.5;
+            animation: floatShape infinite ease-in-out;
+        }
+
+        .circle {
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+
+        .square {
+            border-radius: 0;
+            filter: blur(40px);
+        }
+
+        .triangle {
+            width: 0;
+            height: 0;
+            background: none;
+            filter: blur(40px);
+            opacity: 0.7;
+            border-left: var(--size) solid transparent;
+            border-right: var(--size) solid transparent;
+            border-bottom: var(--size) solid var(--color);
+        }
+
+        @keyframes floatShape {
+            0% {
+                transform: translate(0,0) scale(1);
+            }
+
+            25% {
+                transform: translate(var(--dx), var(--dy)) scale(1.1);
+            }
+
+            50% {
+                transform: translate(calc(var(--dx) * -1), calc(var(--dy) * 0.5)) scale(1.2);
+            }
+
+            75% {
+                transform: translate(calc(var(--dx) * 0.5), calc(var(--dy) * -1)) scale(1.1);
+            }
+
+            100% {
+                transform: translate(0,0) scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="shapes"></div>
+    <div class="product-section">
+        <img src="product.png" alt="Product" class="product-image">
+        <div class="product-info">
+            <div class="product-name">Product Name</div>
+            <div class="product-description">This is a description of the product.</div>
+            <div class="product-price">$99.99</div>
+            <button class="product-button">Buy Now</button>
+        </div>
+    </div>
+    <div class="copyright">
+        &copy; 2026 Haami Hosseinzadeh. All rights reserved.
+    </div>
+    <script>
+        // Background shapes
+        const shapesContainer = document.getElementById("shapes");
+        const colors = ["#7a7cff", "#9a7cff", "#b38cff", "#6a7cff", "#8a7cff"];
+        const numShapes = 12;
+
+        function random(min, max) { return Math.random() * (max - min) + min; }
+
+        for (let i = 0; i < numShapes; i++) {
+            const shapeType = ["circle", "square", "triangle"][Math.floor(Math.random() * 3)];
+            const s = document.createElement("div");
+
+            if (shapeType === "triangle") {
+                const size = random(60, 120);
+                s.className = "shape triangle";
+                s.style.setProperty("--size", `${size}px`);
+                s.style.setProperty("--color", colors[Math.floor(Math.random() * colors.length)]);
+            } else {
+                const size = random(150, 300);
+                s.className = `shape ${shapeType}`;
+                s.style.width = `${size}px`;
+                s.style.height = `${size}px`;
+                s.style.background = colors[Math.floor(Math.random() * colors.length)];
+            }
+
+            s.style.top = `${random(0, window.innerHeight)}px`;
+            s.style.left = `${random(0, window.innerWidth)}px`;
+            s.style.setProperty("--dx", `${random(-200, 200)}px`);
+            s.style.setProperty("--dy", `${random(-200, 200)}px`);
+            s.style.animationDuration = `${random(20, 60)}s`;
+
+            shapesContainer.appendChild(s);
+        }
+    </script>
+</body>
+</html>

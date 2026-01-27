@@ -1,2 +1,394 @@
-<h1>test<h1>
-<h2>`1234567890-=~!@#$%^&*()_+qwertyuiop[]\QWERTYUIOP{}|asdfghjkl;'ASDFGHJKL:"zxcvbnm,./ZXCVBNM<>?</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Shopping Website</title>
+    <style>
+        :root {
+            --bg: #0a0a1a;
+            --panel: #111133;
+            --text: #d0c8ff;
+            --accent: #a86bff;
+            --border: #2a2a4a;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+        /* Liquid Glass Look */
+        .liquid-glass {
+            background: linear-gradient(to right, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.4)); /* Gradient for effect */
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 1200px;
+            margin: 20px auto; /* Center the liquid glass section */
+            overflow-x: auto;
+        }
+
+            .liquid-glass::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.3));
+                opacity: 0.5;
+                pointer-events: none; /* Allow clicks through the overlay */
+            }
+
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px;
+            background: var(--panel);
+            border-radius: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            width: 100px; /* Adjust logo size */
+            height: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-image {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* Welcome Section */
+        .welcome {
+            text-align: center;
+            padding: 50px;
+        }
+
+            .welcome h1 {
+                color: var(--accent);
+                font-size: 36px;
+                margin-bottom: 20px;
+            }
+
+            .welcome p {
+                font-size: 20px;
+                line-height: 1.6;
+                margin: 0 auto;
+                max-width: 800px;
+            }
+
+        /* Product Scroll */
+        .product-scroll {
+            background: #222;
+            padding: 20px;
+            overflow-x: auto; /* Horizontal scrolling */
+            white-space: nowrap;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .product-container {
+            display: inline-block;
+            width: 200px;
+            margin-right: 10px;
+            border-radius: 5px;
+            background: var(--panel);
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+            .product-container:hover {
+                transform: scale(1.05);
+            }
+
+        .product-image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 20%;
+            margin-bottom: 10px;
+        }
+
+        .product-name {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .product-price {
+            font-size: 16px;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .product {
+            background: var(--accent);
+            color: var(--bg);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        /* Copyright Section */
+        .copyright {
+            text-align: center;
+            padding: 50px;
+            font-size: 14px;
+        }
+
+        /* Brands Section */
+        .brands {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+
+        .brand-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 20%;
+            cursor: pointer;
+        }
+
+        /* Stylish Search Bar */
+        .search-bar {
+            display: flex;
+            background: var(--panel);
+            border-radius: 20px;
+            padding: 8px;
+            width: 300px;
+            margin-bottom: 20px; /* Add margin below search bar */
+            margin-inline: auto:
+        }
+
+            .search-bar input[type="text"] {
+                flex: 1;
+                border: none;
+                background: none;
+                outline: none;
+                color: var(--text);
+                padding: 10px;
+                border-radius: 20px 0 0 20px;
+            }
+
+            .search-bar button {
+                background: var(--accent);
+                color: var(--bg);
+                border: none;
+                padding: 10px 15px;
+                border-radius: 0 20px 20px 0;
+                cursor: pointer;
+                font-size: 14px;
+            }
+
+        .shape {
+            position: fixed; /* Make shapes fixed */
+            opacity: 0.5;
+            animation: floatShape infinite ease-in-out;
+        }
+
+        .circle {
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+
+        .square {
+            border-radius: 0;
+            filter: blur(40px);
+        }
+
+        .triangle {
+            width: 0;
+            height: 0;
+            background: none;
+            filter: blur(40px);
+            opacity: 0.7;
+            border-left: var(--size) solid transparent;
+            border-right: var(--size) solid transparent;
+            border-bottom: var(--size) solid var(--color);
+        }
+
+        @keyframes floatShape {
+            0% {
+                transform: translate(0,0) scale(1);
+            }
+
+            25% {
+                transform: translate(var(--dx), var(--dy)) scale(1.1);
+            }
+
+            50% {
+                transform: translate(calc(var(--dx) * -1), calc(var(--dy) * 0.5)) scale(1.2);
+            }
+
+            75% {
+                transform: translate(calc(var(--dx) * 0.5), calc(var(--dy) * -1)) scale(1.1);
+            }
+
+            100% {
+                transform: translate(0,0) scale(1);
+            }
+        }
+    </style>
+</head>
+<body">
+    <div id="shapes"></div>
+
+    <div class="container">
+
+        <!-- Navbar -->
+        <div class="navbar">
+            <img src="logo.png" alt="Logo" class="logo">
+            <div class="nav-links">
+                <img src="moft.png" alt="/moft" class="nav-image">
+                <img src="esr.png" alt="Link 2" class="nav-image">
+                <img src="spigen.png" alt="Link 3" class="nav-image">
+                <!-- Search Bar -->
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for products...">
+                    <button>Search</button>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Welcome Section -->
+        <div class="welcome liquid-glass">
+            <h1>[StoreName]</h1>
+                <p">[StoreDesc]</p>
+        </div>
+        <!-- Brands Section -->
+        <div class="brands">
+            <img src="esr.png" alt="Brand 1" class="brand-image">
+            <img src="spigen.png" alt="Brand 2" class="brand-image">
+            <img src="moft.png" alt="Brand 3" class="brand-image">
+        </div>
+
+        <!-- Product Scroll -->
+        <div class="product-scroll">
+            <!-- Product 1 -->
+            <div class="product-container">
+                <img src="product.png" alt="Product 1" class="product-image">
+                <div class="product-name">1</div>
+                <div class="product-price">$25.00</div>
+ 
+                <a class="product" href="product/1">Buy</a>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-container">
+                <img src="product.png" alt="Product 2" class="product-image">
+                <div class="product-name">2</div>
+                <div class="product-price">$50.00</div>
+ 
+                <a class="product" href="/product/">Buy</a>
+</div>
+
+            <!-- Product 3 -->
+            <div class="product-container">
+                <img src="product.png" alt="Product 3" class="product-image">
+                <div class="product-name">3</div>
+                <div class="product-price">$120.00</div>
+ 
+                <a class="product" href="/product/">Buy</a>
+</div>
+
+            <!-- Product 4 -->
+            <div class="product-container">
+                <img src="product.png" alt="Product 4" class="product-image">
+                <div class="product-name">4</div>
+                <div class="product-price">$90.00</div>
+               <a class="product" href="/product/">Buy</a>
+</div>
+
+            <!-- Product 5 -->
+            <div class="product-container">
+                <img src="product.png" alt="Product 5" class="product-image">
+                <div class="product-name">5</div>
+                <div class="product-price">$80.00</div>
+ 
+                <a class="product" href="/product/">Buy</a>
+</div>
+
+            <!-- Product 6 -->
+            <div class="product-container">
+                <img src="product.png" alt="Product 6" class="product-image">
+                <div class="product-name">6</div>
+                <div class="product-price">$40.00</div>
+ 
+                <a class="product" href="/product/">Buy</a>
+</div>
+
+            <!-- Product 7 -->
+            <div class="product-container">
+                <img src="product.png" alt="Product 7" class="product-image">
+                <div class="product-name">7</div>
+                <div class="product-price">$70.00</div>
+ 
+                <a class="product" href="/product/">Buy</a>
+</div>
+
+        </div>
+
+        <!-- Copyright Section -->
+        <div class="copyright">
+            &copy; 2026 Haami Hosseinzadeh. All rights reserved.
+        </div>
+    </div>
+
+    <script>
+        // Background shapes
+        const shapesContainer = document.getElementById("shapes");
+        const colors = ["#7a7cff", "#9a7cff", "#b38cff", "#6a7cff", "#8a7cff"];
+        const numShapes = 12;
+
+        function random(min, max) { return Math.random() * (max - min) + min; }
+
+        for (let i = 0; i < numShapes; i++) {
+            const shapeType = ["circle", "square", "triangle"][Math.floor(Math.random() * 3)];
+            const s = document.createElement("div");
+
+            if (shapeType === "triangle") {
+                const size = random(60, 120);
+                s.className = "shape triangle";
+                s.style.setProperty("--size", `${size}px`);
+                s.style.setProperty("--color", colors[Math.floor(Math.random() * colors.length)]);
+            } else {
+                const size = random(150, 300);
+                s.className = `shape ${shapeType}`;
+                s.style.width = `${size}px`;
+                s.style.height = `${size}px`;
+                s.style.background = colors[Math.floor(Math.random() * colors.length)];
+            }
+
+            s.style.top = `${random(0, window.innerHeight)}px`;
+            s.style.left = `${random(0, window.innerWidth)}px`;
+            s.style.setProperty("--dx", `${random(-200, 200)}px`);
+            s.style.setProperty("--dy", `${random(-200, 200)}px`);
+            s.style.animationDuration = `${random(20, 60)}s`;
+
+            shapesContainer.appendChild(s);
+        }
+    </script>
+    </body

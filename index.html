@@ -3,6 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <title>Shopping Website</title>
+    <script>
+        !function (e, t, n) { e.yektanetAnalyticsObject = n, e[n] = e[n] || function () { e[n].q.push(arguments) }, e[n].q = e[n].q || []; var a = t.getElementsByTagName("head")[0], r = new Date, c = "https://cdn.yektanet.com/superscript/mdpZgX5D/native-Haamih.ir-45404/yn_pub.js?v=" + r.getFullYear().toString() + "0" + r.getMonth() + "0" + r.getDate() + "0" + r.getHours(), s = t.createElement("link"); s.rel = "preload", s.as = "script", s.href = c, a.appendChild(s); var l = t.createElement("script"); l.async = !0, l.src = c, a.appendChild(l) }(window, document, "yektanet");
+    </script>
     <style>
         :root {
             --bg: #0a0a1a;
@@ -95,18 +98,27 @@
                 max-width: 800px;
             }
 
-        /* Product Scroll */
-        .product-scroll {
-            background: #222;
-            padding: 20px;
+        /* Product Scroll Container */
+        .product-scroll-container {
             overflow-x: auto; /* Horizontal scrolling */
-            white-space: nowrap;
-            display: inline-block;
-            vertical-align: middle;
+            padding: 20px;
         }
 
+        /* Product Scroll */
+        .product-scroll {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+        }
+        
+        /* Hide Scrollbar */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Product Container */
         .product-container {
-            display: inline-block;
+            flex-shrink: 0;
             width: 200px;
             margin-right: 10px;
             border-radius: 5px;
@@ -251,7 +263,7 @@
         }
     </style>
 </head>
-<body">
+<body>
     <div id="shapes"></div>
 
     <div class="container">
@@ -276,7 +288,7 @@
         <!-- Welcome Section -->
         <div class="welcome liquid-glass">
             <h1>[StoreName]</h1>
-                <p">[StoreDesc]</p>
+            <p>[StoreDesc]</p>
         </div>
         <!-- Brands Section -->
         <div class="brands">
@@ -286,77 +298,102 @@
         </div>
 
         <!-- Product Scroll -->
-        <div class="product-scroll">
-            <!-- Product 1 -->
-            <div class="product-container">
-                <img src="product.png" alt="Product 1" class="product-image">
-                <div class="product-name">1</div>
-                <div class="product-price">$25.00</div>
- 
-                <a class="product" href="shop/1.html">Buy</a>
+        <div class="product-scroll-container">
+            <div class="product-scroll">
+                <!-- Product 1 -->
+                <div class="product-container">
+                    <img src="product.png" alt="Product 1" class="product-image">
+                    <div class="product-name">product</div>
+                    <div class="product-price">$26.70</div>
+
+                    <a class="product" href="product/1/index.html">Buy</a>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-container">
+                    <img src="product.png" alt="Product 2" class="product-image">
+                    <div class="product-name">2</div>
+                    <div class="product-price">$50.00</div>
+
+                    <a class="product" href="/product/">Buy</a>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-container">
+                    <img src="product.png" alt="Product 3" class="product-image">
+                    <div class="product-name">3</div>
+                    <div class="product-price">$120.00</div>
+
+                    <a class="product" href="/product/">Buy</a>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-container">
+                    <img src="product.png" alt="Product 4" class="product-image">
+                    <div class="product-name">4</div>
+                    <div class="product-price">$90.00</div>
+                    <a class="product" href="/product/">Buy</a>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-container">
+                    <img src="product.png" alt="Product 5" class="product-image">
+                    <div class="product-name">5</div>
+                    <div class="product-price">$80.00</div>
+
+                    <a class="product" href="/product/">Buy</a>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-container">
+                    <img src="product.png" alt="Product 6" class="product-image">
+                    <div class="product-name">6</div>
+                    <div class="product-price">$40.00</div>
+
+                    <a class="product" href="/product/">Buy</a>
+                </div>
+
+                <!-- Product 7 -->
+                <div class="product-container">
+                    <img src="product.png" alt="Product 7" class="product-image">
+                    <div class="product-name">7</div>
+                    <div class="product-price">$70.00</div>
+
+                    <a class="product" href="/product/">Buy</a>
+                </div>
+                <!-- Product 5 -->
+                <div class="product-container">
+                    <img src="product.png" alt="Product 5" class="product-image">
+                    <div class="product-name">5</div>
+                    <div class="product-price">$80.00</div>
+
+                    <a class="product" href="/product/">Buy</a>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-container">
+                    <img src="product.png" alt="Product 6" class="product-image">
+                    <div class="product-name">6</div>
+                    <div class="product-price">$40.00</div>
+
+                    <a class="product" href="/product/">Buy</a>
+                </div>
+
+                <!-- Product 7 -->
+                <div class="product-container">
+                    <img src="product.png" alt="Product 7" class="product-image">
+                    <div class="product-name">7</div>
+                    <div class="product-price">$70.00</div>
+
+                    <a class="product" href="/product/">Buy</a>
+                </div>
             </div>
-
-            <!-- Product 2 -->
-            <div class="product-container">
-                <img src="product.png" alt="Product 2" class="product-image">
-                <div class="product-name">2</div>
-                <div class="product-price">$50.00</div>
- 
-                <a class="product" href="/product/">Buy</a>
-</div>
-
-            <!-- Product 3 -->
-            <div class="product-container">
-                <img src="product.png" alt="Product 3" class="product-image">
-                <div class="product-name">3</div>
-                <div class="product-price">$120.00</div>
- 
-                <a class="product" href="/product/">Buy</a>
-</div>
-
-            <!-- Product 4 -->
-            <div class="product-container">
-                <img src="product.png" alt="Product 4" class="product-image">
-                <div class="product-name">4</div>
-                <div class="product-price">$90.00</div>
-               <a class="product" href="/product/">Buy</a>
-</div>
-
-            <!-- Product 5 -->
-            <div class="product-container">
-                <img src="product.png" alt="Product 5" class="product-image">
-                <div class="product-name">5</div>
-                <div class="product-price">$80.00</div>
- 
-                <a class="product" href="/product/">Buy</a>
-</div>
-
-            <!-- Product 6 -->
-            <div class="product-container">
-                <img src="product.png" alt="Product 6" class="product-image">
-                <div class="product-name">6</div>
-                <div class="product-price">$40.00</div>
- 
-                <a class="product" href="/product/">Buy</a>
-</div>
-
-            <!-- Product 7 -->
-            <div class="product-container">
-                <img src="product.png" alt="Product 7" class="product-image">
-                <div class="product-name">7</div>
-                <div class="product-price">$70.00</div>
- 
-                <a class="product" href="/product/">Buy</a>
-</div>
-
-        </div>
-
-        <!-- Copyright Section -->
-        <div class="copyright">
-            &copy; 2026 Haami Hosseinzadeh. All rights reserved.
-        </div>
+            <div id="pos-article-text-115402"></div>
     </div>
-
+    <!-- Copyright Section -->
+    <div class="copyright">
+        &copy; 2026 Haami Hosseinzadeh. All rights reserved.
+    </div>
     <script>
         // Background shapes
         const shapesContainer = document.getElementById("shapes");
@@ -391,4 +428,5 @@
             shapesContainer.appendChild(s);
         }
     </script>
-    </body
+</body>
+</html>
